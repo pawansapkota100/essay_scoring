@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Answer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    .answer-post {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .answer-post h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .votes {
+      color: #007bff;
+    }
+
+    .comments {
+      border-top: 1px solid #ddd;
+      padding: 1rem;
+    }
+
+    .comment {
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .comment-text {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="answer-post">
+          <h3>How do devs maintain old projects?</h3>
+          <div class="user-info">
+            <span>user23472212</span>
+            <span>asked 2 years, 9 months ago. Modified today. Viewed 231 times.</span>
+          </div>
+          <p>I've made a project for a course a year ago, and now I'm trying to make it work on my machine, but I have no luck. I've got npm 7.13.0 and node 16.1.0. I've ran npm update in order to update all the depencies, but it returns the same error:
+
+          ```
+          ERROR Failed to compile with 1 error
+
+          Syntax Error: TypeError: Cannot read property 'parseComponent of undefined'
+
+          You may use special comments to disable some warnings.
+
+          Use // eslint-disable-next-line to ignore the next line.
+          Use / eslint-disable / to ignore all warnings in a file.
+          ```
+
+          I have no idea how to trace the error: Syntax Error: TypeError: Cannot read property 'parseComponent of undefined'.</p>
+          <div class="tags">
+            <a href="#">javascript</a>
+            <a href="#">node.js</a>
+            <a href="#">npm</a>
+          </div>
+          <div class="votes">
+            0 votes
+          </div>
+        </div>
+
+        <div class="comments">
+          <h4>Comments</h4>
+          <div class="comment">
+            <div class="comment-user-info">
+              <span>user456123</span>
+              <span>commented 2 years, 9 months ago</span>
+            </div>
+            <div class="comment-text">
+              It seems like you're missing some dependencies. Try running `npm install` again, and then try building your project again.
+            </div>
+          </div>
+          <div class="comment">
+            <div class="comment-user-info">
+              <span>rm1948</span>
+              <span>commented 1 year, 3 months ago</span>
+            </div>
+            <div class="comment-text">
+              I agree with user456123. Make sure you have all dependencies installed correctly. Also, check for any outdated dependencies that might be causing conflicts.
+            </div>
+          </div>
+ 
+          <div class="add-comment">
+            <h5>Add a comment</h5>
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" id="comment-text" rows="3" placeholder="Write your comment"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        </div>
+    </div>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ </body>
+ 
+ </html>

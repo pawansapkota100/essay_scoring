@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Essay Forum{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="filter-section">
+                <h2>Questions</h2>
+                <a href="{% url 'ask_essay' %}" class="btn btn-primary float-end">Ask Essay</a>
+            </div>
+
+            {% for essay in essay_data %}
+            <div class="questions">
+                <a href="{% url 'view_answer' essay.id %}"><h5>{{ essay.title }}</h5></a>
+                <div class="user-info">
+                    <span>{{ essay.user.username }}</span> <!-- Assuming user is a ForeignKey in Form_Question -->
+                    <span>asked {{ essay.time }}</span>
+                </div>
+                <p>{{ essay.description }}</p>
+                <div class="tags">
+                    {% for tag in essay.tags.all %}
+                    <p>Tag:{{ tag.name }}<p>
+                    {% endfor %}
+                </div>
+                <div class="votes">
+                    {{ essay.votes }} votes
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-section">
+            <h2>Writing a good question</h2>
+            <p>You're ready to ask a programming-related question and this form will help guide you through the process.</p>
+            <form method="post" onsubmit="return validateForm();">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Summarize your problem in a one-line title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter your question title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Describe your problem in more detail</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tried">Describe what you tried and what you expected to happen</label>
+                    <textarea class="form-control" id="tried" name="tried" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Add tags (optional)</label>
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter tags separated by commas">
+                </div>
+                <button type="submit" class="btn btn-primary">Post Question</button>
+            </form>
+            
+          </div>
+        </div>
+        <div class="col-md-4">
+          </div>
+      </div>
+    </div>
+    <script>
+        function validateForm() {
+            var title = document.getElementById('title').value.trim();
+            var description = document.getElementById('description').value.trim();
+            var tried = document.getElementById('tried').value.trim();
+            
+            if (!title) {
+                alert('Please enter a title.');
+                return false;
+            }
+            if (!description) {
+                alert('Please enter a description.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+{% endblock %}
