@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
-from .models import Question, Essay
+from .models import *
 from .forms import AnswerForm
 
 from tensorflow.keras import backend as K
@@ -13,16 +13,86 @@ import os
 import math
 import numpy as np
 from gensim.models import word2vec
-
+# from .models import ForumEssay
 current_path = os.path.abspath(os.path.dirname(__file__))
 
-# Create your views here.
+from django.shortcuts import render
+
 def index(request):
+    return render(request, 'grader/index.html')
+
+def about(request):
+    return render(request, 'grader/about.html')
+
+def view_answers(request, content_id):
+    content = get_object_or_404(Form_Question, id=content_id)
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment-text')
+        new_comment = Comment(user=request.user, text=comment_text)
+        new_comment.save()
+        # Add the newly created comment to the context
+        content.Comment.add(new_comment)
+        content.save()
+    context = {'content': content}
+    return render(request, 'grader/view_answer.html', context)
+
+
+
+def essay_prediction(request):
     questions_list = Question.objects.order_by('set')
     context = {
         'questions_list': questions_list,
+        }
+    return render(request, 'grader/essay_prediction.html', context)
+
+def essay_writing_forum(request):
+    essay_data = Form_Question.objects.all()
+    context = {
+        'essay_data': essay_data,
     }
-    return render(request, 'grader/index.html', context)
+    return render(request, 'grader/essay_writing_forum.html', context)
+
+
+def ask_essay(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        expectation = request.POST.get('tried')
+        tags_input = request.POST.get('tags')
+
+        # Validate form data
+        if not title or not description:
+            # If title or description is empty, render the form again with an error message
+            error_message = "Please fill in both the title and description."
+            return render(request, 'grader/essay_writing_forum.html', {'error_message': error_message})
+
+        # Create a new Form_Question instance and save it to the database
+        new_essay = Form_Question.objects.create(
+            title=title,
+            description=description,
+            expectation=expectation,
+            user=request.user if request.user.is_authenticated else None,
+            time=timezone.now()
+        )
+
+        # Process tags
+        if tags_input:
+            tags = [tag.strip() for tag in tags_input.split(',')]
+            for tag_name in tags:
+                tag, _ = Tag.objects.get_or_create(name=tag_name)
+                new_essay.tags.add(tag)
+
+        # Redirect to a success page or any other desired page
+        return redirect('grader/ask_essay.html')  # Change 'success_page' to your desired URL name
+    return render(request, 'grader/ask_essay.html')
+
+# Create your views here.
+# def index(request):
+#     questions_list = Question.objects.order_by('set')
+#     context = {
+#         'questions_list': questions_list,
+    # }
+    # return render(request, 'grader/index.html', context)
 
 def essay(request, question_id, essay_id):
     essay = get_object_or_404(Essay, pk=essay_id)

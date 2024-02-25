@@ -1,25 +1,171 @@
-{% load static %}<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Let's Grade Essays{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      .filter-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+  
+      .filter-section select {
+        width: auto;
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        outline: none;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+  
+      .questions {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+  
+      .questions h5 {
+        margin-bottom: 0.5rem;
+        font-size: 18px;
+      }
+  
+      .user-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        color: #888;
+      }
+  
+      .votes {
+        color: #007bff;
+      }
+      .form-section {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Essays</a>
-      </div>
+    .form-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #007bff;
+    }
+    .answer-post {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .answer-post h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .votes {
+      color: #007bff;
+    }
+
+    .comments {
+      border-top: 1px solid #ddd;
+      padding: 1rem;
+    }
+
+    .comment {
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .comment-text {
+      margin-bottom: 0.5rem;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">My Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'essay_prediction' %}">Essay Score Prediction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'essay_writing_forum' %}">Essay Writing Forum</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-primary my-2 my-sm-0 mr-2" type="submit">Sign In</button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Sign Up</button>
+          </div>
+        </div>
     </nav>
 
-    <div class="container">
-      <ol class="breadcrumb my-4">
-        {% block breadcrumb %}
+    <div class="container mt-5">
+        {% block content %}
         {% endblock %}
-      </ol>
-      {% block content %}
-      {% endblock %}
     </div>
-  </body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
 </html>
