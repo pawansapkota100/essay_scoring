@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile - My Website
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h2>Profile</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            {% if user.profile.picture %}
+              <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle">
+            {% else %}
+              <div class="text-center">
+                <i class="fas fa-user-circle fa-9x"></i>
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <h4>{{ user.username }}</h4>
+            {% if user.profile.bio %}
+              <p>{{ user.profile.bio }}</p>
+            {% else %}
+              <p>No bio available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

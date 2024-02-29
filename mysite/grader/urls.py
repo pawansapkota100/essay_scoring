@@ -12,4 +12,11 @@ urlpatterns = [
     path('<int:question_id>/essay<int:essay_id>/', views.essay, name='essay'),
     path('view_answer/<int:content_id>/', views.view_answers, name='view_answer'),
     path('ask_essay/', views.ask_essay, name='ask_essay'),
+    path('ask_essay/success/', views.success, name='success'),
+    path('login/', views.signin, name='login'),
+    path('register/', views.register, name='register'),
+    path('fail',views.fail, name='fail'),
+    path('logout/', views.logout_view, name='logout'),
+    path('profile/', views.profile, name='profile')
+
 ]

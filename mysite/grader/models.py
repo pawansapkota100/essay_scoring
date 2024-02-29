@@ -34,5 +34,11 @@ class Form_Question(models.Model):
     votes = models.IntegerField(default=0)
     Comment= models.ManyToManyField(Comment, null=True, blank=True, related_name='comments')
 
-
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(null=True, blank=True)
+    picture = models.ImageField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.user.username
 
