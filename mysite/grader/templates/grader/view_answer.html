@@ -3,9 +3,10 @@
 {% block title %}View Answer - Essay Forum{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row py-4">
-        <div class="col-md-10">
+        <!-- Main Content -->
+        <div class="col-md-9">
             <div class="filter-section">
                 <h2>Questions</h2>
                 <a href="{% url 'ask_essay' %}" class="btn btn-primary float-end">Ask Essay</a>
@@ -57,10 +58,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <!-- End Main Content -->
+
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h4>Additional Information</h4>
+                <p>Here you can add additional content, links, or any other information you want to display.</p>
+                <a href="#" class="btn btn-secondary">Explore</a>
+            </div>
         </div>
+        <!-- End Sidebar -->
     </div>
 </div>
+
 <script>
     function validateForm() {
         var commentText = document.getElementById('comment-text').value;

@@ -3,34 +3,48 @@
 {% block title %}Essay Forum{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <!-- Sidebar -->
+        <div class="col-md-3 bg-dark text-white">
+            <div class="p-4">
+                <!-- <h4>Sidebar</h4> -->
+                <p>Welcome to our Essay Forum!</p>
+                <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="img-fluid rounded-circle mb-3">
+                <p>Explore and engage with essays on various topics.</p>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <!-- Main Content -->
+        <div class="col-md-9">
             <div class="filter-section">
-                <h2>Questions</h2>
+                <h2 class="text-center mb-4">Essay Forum</h2>
                 <a href="{% url 'ask_essay' %}" class="btn btn-primary float-end">Ask Essay</a>
             </div>
 
             {% for essay in essay_data %}
-            <div class="questions">
-                <a href="{% url 'view_answer' essay.id %}"><h5>{{ essay.title }}</h5></a>
-                <div class="user-info">
-                    <span>{{ essay.user.username }}</span> <!-- Assuming user is a ForeignKey in Form_Question -->
-                    <span>asked {{ essay.time }}</span>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'view_answer' essay.id %}">{{ essay.title }}</a></h5>
+                    <div class="user-info mb-2">
+                        <span class="fw-bold">{{ essay.user.username }}</span> <!-- Assuming user is a ForeignKey in Form_Question -->
+                        <span class="text-muted">asked {{ essay.time }}</span>
+                    </div>
+                    <p class="card-text">{{ essay.description }}</p>
+                    <div class="tags">
+                        {% for tag in essay.tags.all %}
+                        <span class="badge bg-info">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-                <p>{{ essay.description }}</p>
-                <div class="tags">
-                    {% for tag in essay.tags.all %}
-                    <p>Tag:{{ tag.name }}<p>
-                    {% endfor %}
-                </div>
-                <div class="votes">
-                    {{ essay.votes }} votes
+                <div class="card-footer">
+                    <small class="text-muted">{{ essay.votes }} votes</small>
                 </div>
             </div>
             {% endfor %}
-
         </div>
+        <!-- End Main Content -->
     </div>
 </div>
 {% endblock %}

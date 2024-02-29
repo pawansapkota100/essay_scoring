@@ -3,6 +3,126 @@
 {% block title %}Home - My Website{% endblock %}
 
 {% block content %}
-<h1>Welcome to My Website</h1>
-<p>This is the home page.</p>
+<div id="image-background"></div> <!-- Background image -->
+
+<section id="home" class="main-section">
+    <div class="container">
+        <h2>Welcome to Automated Essay Scoring</h2>
+        <p>Revolutionizing the way essays are evaluated with cutting-edge technology.</p>
+        <!-- Add more content as needed -->
+    </div>
+    <div class="header-container">
+        <div class="header">
+            <h1>Learn From The Expert</h1>
+        </div>
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 form-container">
+                    <h2>ADMISSION NOW</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="repassword">Re-type Password</label>
+                            <input type="password" class="form-control" id="repassword" placeholder="Re-type password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">SIGN UP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <h2 class="text-center mt-5 mb-4">Our Services</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fa fa-pencil fa-3x mb-3"></i>
+                    <h3 class="card-title">Essay Evaluation</h3>
+                    <p class="card-text">Get your essays evaluated with precision and speed.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fa fa-lightbulb-o fa-3x mb-3"></i>
+                    <h3 class="card-title">Insightful Feedback</h3>
+                    <p class="card-text">Receive detailed insights and suggestions for improvement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="fa fa-clock-o fa-3x mb-3"></i>
+                    <h3 class="card-title">Efficient Scoring</h3>
+                    <p class="card-text">Save time with our efficient and automated scoring process.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-section">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet, lorem nec tincidunt ullamcorper,
+            urna est gravida dolor, eget scelerisque sem nunc nec libero.</p>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card about-card">
+                    <div class="card-body">
+                        <h3 class="card-title">Our Mission</h3>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet,
+                            lorem nec tincidunt ullamcorper, urna est gravida dolor, eget scelerisque sem nunc nec
+                            libero.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto">
+                <div class="card about-card">
+                    <div class="card-body">
+                        <h3 class="card-title">Our Vision</h3>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet,
+                            lorem nec tincidunt ullamcorper, urna est gravida dolor, eget scelerisque sem nunc nec
+                            libero.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="forum" class="main-section">
+    <div class="container">
+        <h2>Essay Forum</h2>
+        <p>Join our community to discuss essays, writing tips, and stay updated on the latest developments.</p>
+        <!-- Add more content as needed -->
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Load the content of footer.html into the #footer-placeholder div
+        $("#footer-placeholder").load("footer.html");
+    });
+</script>
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}
+
 {% endblock %}
