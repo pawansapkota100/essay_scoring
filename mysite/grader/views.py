@@ -218,3 +218,9 @@ def logout_view(request):
 @login_required(login_url='login')
 def profile(request):
     return render(request, 'grader/profile.html')
+
+def service(request):
+    return render (request, 'grader/service.html')
+
+def contact(request):
+    return render(request, 'grader/contact.html')
