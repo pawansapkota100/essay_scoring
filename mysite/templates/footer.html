@@ -1,82 +1,151 @@
+{% load static%}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Essay Scoring</title>
-    <!-- Link Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Automated Essay Scoring</title>
+
+	<!-- bootstrap core css -->
+	<link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.css'%}" />
+
+	<!-- fonts style -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+	<!-- font awesome style -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+	<!-- responsive style -->
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+
 </head>
+
 <body>
-  <footer class="footer bg-dark text-light py-5">
-    <div class="row" >
-        <div class="col-md-4">
-            <div class="footer-section about">
-                <h3>About Us</h3>
-                <p>Learn about our mission, vision, and the technology behind our automated essay scoring system.</p>
-            </div>
-        </div>
+	<section class="info_section layout_padding2">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-3">
+			  <div class="info_contact">
+				<h4>
+				  Address
+				</h4>
+				<div class="contact_link_box">
+				  <a href="">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					<span>
+					  Location
+					</span>
+				  </a>
+				  <a href="">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					<span>
+					  Call +01 1234567890
+					</span>
+				  </a>
+				  <a href="">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<span>
+					  demo@gmail.com
+					</span>
+				  </a>
+				</div>
+			  </div>
+			  <div class="info_social">
+				<a href="">
+				  <i class="fa fa-facebook" aria-hidden="true"></i>
+				</a>
+				<a href="">
+				  <i class="fa fa-twitter" aria-hidden="true"></i>
+				</a>
+				<a href="">
+				  <i class="fa fa-linkedin" aria-hidden="true"></i>
+				</a>
+				<a href="">
+				  <i class="fa fa-instagram" aria-hidden="true"></i>
+				</a>
+			  </div>
+			</div>
+			<div class="col-md-3">
+			  <div class="info_link_box">
+				<h4>
+				  Links
+				</h4>
+				<div class="info_links">
+				  <a class="active" href="index.html">
+					<img src="images/nav-bullet.png" alt="">
+					Home
+				  </a>
+				  <a class="" href="about.html">
+					<img src="images/nav-bullet.png" alt="">
+					About
+				  </a>
+				  <a class="" href="service.html">
+					<img src="images/nav-bullet.png" alt="">
+					Services
+				  </a>
+				  <a class="" href="price.html">
+					<img src="images/nav-bullet.png" alt="">
+					Pricing
+				  </a>
+				  <a class="" href="contact.html">
+					<img src="images/nav-bullet.png" alt="">
+					Contact Us
+				  </a>
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-3">
+			  <div class="info_detail">
+				<h4>
+				  Info
+				</h4>
+				<p>
+				  necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
+				</p>
+			  </div>
+			</div>
+			<div class="col-md-3 mb-0">
+			  <h4>
+				Subscribe
+			  </h4>
+			  <form action="#">
+				<input type="text" placeholder="Enter email" />
+				<button type="submit">
+				  Subscribe
+				</button>
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	
+	  <!-- end info section -->
+	
+	
+	  <!-- footer section -->
+	  <footer class="footer_section">
+		<div class="container">
+		  <p>
+			&copy; <span id="displayYear"></span> All Rights Reserved By
+			<a href="https://html.design/">Free Html Templates</a>
+		  </p>
+		</div>
+	  </footer>
+	  <!-- footer section -->
+	
+	  <!-- jQery -->
+	  <script src="js/jquery-3.4.1.min.js"></script>
+	  <!-- bootstrap js -->
+	  <script src="js/bootstrap.js"></script>
+	  <!-- custom js -->
+	  <script src="js/custom.js"></script>
 
-        <div class="col-md-4">
-            <div class="footer-section contact">
-                <h3>Contact Us</h3>
-                <p>Email: info@example.com</p>
-                <p>Phone: +1 (123) 456-7890</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="footer-section social">
-                <h3>Follow Us</h3>
-                <a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
-                <a href="#" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
-                <a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
-            </div>
-        </div>
-        
-    </div>
-</footer>
-
-<!-- Link Bootstrap JS (optional, but required if you want to use Bootstrap's JavaScript components) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
+
 </html>
