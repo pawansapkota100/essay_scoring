@@ -3,72 +3,78 @@
 {% block title %}View Answer - Essay Forum{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div style="color: aliceblue;" class="container-fluid">
     <div class="row py-4">
-        <!-- Main Content -->
         <div class="col-md-9">
-            <div class="filter-section">
-                <h2>Questions</h2>
-                <a href="{% url 'ask_essay' %}" class="btn btn-primary float-end">Ask Essay</a>
-            </div>
+            <div class="response">
+                <h1 class="response__title">{{ content.title }}</h1>
+                <div class="post-group">
+                    <div class="post">
+                        <div class="d-flex align-items-center">
 
-            <div class="answer-post">
-                <h3>{{ content.title }}</h3>
-                <div class="user-info">
-                    <span>{{ content.user.username }}</span>
-                    <span>asked {{ content.time }}</span>
-                </div>
-                <p>{{ content.description }}</p>
-                <div class="tags">
-                    <a href="#">{{ tag.name }}</a>
-                </div>
-                <div class="votes">
-                    {{ content.votes }} votes
-                </div>
-            </div>
-
-            <div class="comments">
-                <h4>Comments</h4>
-                {% if content.Comment%}
-                    {% for comment in content.Comment.all %}
-                    <div class="comment">
-                        <div class="comment-user-info">
-                            <span>{{ comment.user.username }}</span>
-                            <span> {{ comment.date }}</span>
+                            <div>
+                                <img src="{{ user.profile.picture.url }}" alt="User Profile Picture" class="fa fa-user-circle fa-2x me-2">
+                                <h2 class="post__author">
+                                    {{ content.user.username }}
+                                </h2>
+                                <h3 class="post__timestamp">
+                                    Asked {{ content.time }}
+                                </h3>
+                            </div>
                         </div>
-                        <div class="comment-text">
-                            {{ comment.text }}
+                        <p class="post__body">
+                            {{ content.description }}
+                        </p>
+                        <div class="post__actions">
+                            <div class="btn btn-primary">
+                                Like
+                            </div>
+                            <div class="btn btn-danger">
+                                Dislike
+                            </div>
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa fa-comment-o"></i> 2
+                            </button>
                         </div>
                     </div>
-                {% endfor %}
-                {% else %}
-                <p>No comments yet.</p>
-                {% endif %}
+                    {% if content.Comment %}
+                    <div class="comments">
+                        {% for comment in content.Comment.all %}
+                        <div class="comment-group border rounded mb-3 d-flex flex-column align-items-center">
+                            <div>
 
-                <div class="add-comment">
-                    <h5>Add a comment</h5>
-                    <form method="post" onsubmit="return validateForm();">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <textarea class="form-control" name="comment-text" id="comment-text" rows="3"
-                                placeholder="Write your comment"></textarea>
+                                <h3 class="post__author">
+                                    <i class="fa fa-user-circle fa-2x me-2"></i>
+                                    {{ comment.user.username }}
+                                </h3>
+                                <h4 class="post__timestamp">
+                                    {{ comment.date }}
+                                </h4>
+                            </div>
+                            <p class="post__body text-center">
+                                {{ comment.text }}
+                            </p>
                         </div>
-                        <button type="submit" class="btn btn-primary">Post Comment</button>
-                    </form>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p>No comments yet.</p>
+                    {% endif %}
+
+                    <div class="add-comment">
+                        <h5>Add a comment</h5>
+                        <form method="post" onsubmit="return validateForm();">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea class="form-control" name="comment-text" id="comment-text" rows="3"
+                                    placeholder="Write your comment"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- End Main Content -->
-
-        <!-- Sidebar -->
-        <div class="col-md-3">
-            <div class="sidebar">
-                <h4>Additional Information</h4>
-                <p>Here you can add additional content, links, or any other information you want to display.</p>
-                <a href="#" class="btn btn-secondary">Explore</a>
-            </div>
-        </div>
-        <!-- End Sidebar -->
     </div>
 </div>
 

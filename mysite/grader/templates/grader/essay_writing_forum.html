@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %}Essay Forum{% endblock %}
 
@@ -10,7 +12,7 @@
             <div class="p-4">
                 <!-- <h4>Sidebar</h4> -->
                 <p>Welcome to our Essay Forum!</p>
-                <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="img-fluid rounded-circle mb-3">
+                <img src="{% static 'images/logo.png'%}" alt="Placeholder Image" class="img-fluid rounded-circle mb-3">
                 <p>Explore and engage with essays on various topics.</p>
             </div>
         </div>
@@ -19,7 +21,7 @@
         <!-- Main Content -->
         <div class="col-md-9">
             <div class="filter-section">
-                <h2 class="text-center mb-4">Essay Forum</h2>
+                <h2 style="color: white" class="text-center mb-4">Essay Forum</h2>
                 <a href="{% url 'ask_essay' %}" class="btn btn-primary float-end">Ask Essay</a>
             </div>
 
