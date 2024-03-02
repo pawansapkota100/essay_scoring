@@ -77,25 +77,27 @@
 				  Links
 				</h4>
 				<div class="info_links">
-				  <a class="active" href="index.html">
+				  <a class="active" href="{% url 'index' %}">
 					<img src="images/nav-bullet.png" alt="">
 					Home
 				  </a>
-				  <a class="" href="about.html">
+				  <a class="" href="{% url 'about' %}">
 					<img src="images/nav-bullet.png" alt="">
 					About
 				  </a>
-				  <a class="" href="service.html">
+				  <a class="" href="{% url 'service' %}">
 					<img src="images/nav-bullet.png" alt="">
 					Services
 				  </a>
-				  <a class="" href="price.html">
-					<img src="images/nav-bullet.png" alt="">
-					Pricing
+				  
 				  </a>
-				  <a class="" href="contact.html">
+				  <a class="" href="{% url 'contact' %}">
 					<img src="images/nav-bullet.png" alt="">
 					Contact Us
+				  </a>
+				  <a class="" href="{% url 'essay_writing_forum' %}">
+					<img src="images/nav-bullet.png" alt="">
+					Forum
 				  </a>
 				</div>
 			  </div>

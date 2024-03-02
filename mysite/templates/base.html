@@ -9,13 +9,15 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
 
   <title>{% block title %}Hostit{% endblock %}</title>
-
+  <style>
+    
+  </style>
 
 
 
@@ -29,7 +31,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="{% url 'index' %}">
-            <span>Hostit</span>
+            <img style="width: 50px; height: auto;" src="{% static 'images/logo.png' %}" alt="">
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,6 +49,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'essay_prediction' %}">Check Essay</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'essay_writing_forum' %}">Forum</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'service' %}">Services</a>

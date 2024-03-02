@@ -158,7 +158,7 @@ def question(request, question_id):
 from django.contrib.auth import authenticate,login
 def signin(request):
     if request.method == 'POST':
-        username = request.POST.get('email')
+        username = request.POST.get('username')
         password = request.POST.get('password')
         print(username)
         print(password)
@@ -189,8 +189,12 @@ def register(request):
         
         if password1 == password2:
             # Check if the username or email already exists
-            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
-                return render(request, 'register.html', {'error': 'Username or email already exists.'})
+            try:
+                if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                    return render(request, 'register.html', {'error': 'Username or email already exists.'})
+            except:
+                pass
+            
             else:
                 # Create the user
                 user = User.objects.create_user(username=username, email=email, password=password1)
@@ -202,6 +206,8 @@ def register(request):
         else:
             # Handle case when passwords don't match
            print('passwords dont match')
+    else:
+        pass
     
     return render(request, 'grader/register.html')
 
