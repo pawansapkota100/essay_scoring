@@ -3,6 +3,12 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+  <!-- Your HTML content goes here -->
+
+  <!-- SweetAlert2 JavaScript -->
+
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +22,7 @@
 
   <title>{% block title %}Hostit{% endblock %}</title>
   <style>
-    
+
   </style>
 
 
@@ -45,16 +51,16 @@
                 <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}"> About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'essay_prediction' %}">Check Essay</a>
+                <a class="nav-link" href="{% url 'essay_prediction' %}">Score Prediction</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'essay_writing_forum' %}">Forum</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'service' %}">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}"> About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
@@ -64,7 +70,7 @@
                 <a class="nav-link btn btn-outline-light" href="{% url 'profile' %}">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn btn-outline-light" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link btn btn-outline-light" href="#" onclick="confirmLogout()">Logout</a>
               </li>
               {% else %}
               <li class="nav-item">
@@ -95,6 +101,81 @@
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <!-- custom js -->
   <script src="{% static 'js/custom.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function submitForm() {
+      // Your form submission code here
+
+      // Assuming form submission is successful
+      Swal.fire({
+        icon: 'success',
+        title: 'Request Submitted!',
+        text: 'Your request has been successfully submitted.',
+        confirmButtonText: 'OK',
+        timer: 100000000 // Set a longer timer initially (e.g., 10 seconds)
+      }).then((result) => {
+        // You can handle what happens after the popup closes here
+        // For example, you can redirect the user to another page
+        if (result.isConfirmed) {
+          window.location.href = ''; // Redirect to a success page
+        }
+      });
+    }
+    function confirmLogout() {
+      Swal.fire({
+        title: 'Logout',
+        text: 'Are you sure you want to log out?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, logout',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "{% url 'logout' %}"; // Redirect to logout URL
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      const likeButtons = document.querySelectorAll('.like-btn');
+      const dislikeButtons = document.querySelectorAll('.dislike-btn');
+
+      likeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const postId = button.getAttribute('data-post-id');
+          updateVote(postId, 'like');
+        });
+      });
+
+      dislikeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const postId = button.getAttribute('data-post-id');
+          updateVote(postId, 'dislike');
+        });
+      });
+
+      function updateVote(postId, action) {
+        fetch(`/update-vote/${postId}/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+          },
+          body: JSON.stringify({
+            action: action
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Update the vote count display on the page
+            const voteCountElement = document.querySelector(`.post__actions [data-post-id="${postId}"]`);
+            if (voteCountElement) {
+              voteCountElement.innerHTML = data.votes;
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    });
+  </script>
 
 </body>
 

@@ -1,28 +1,37 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
 from .models import *
 from .forms import AnswerForm
 
 from tensorflow.keras import backend as K
 from .utils.helpers import *
 from .utils.model import get_model
-
 import os
 import math
 import numpy as np
-from gensim.models import word2vec
-# from .models import ForumEssay
+from django.contrib.auth.decorators import login_required
+
 current_path = os.path.abspath(os.path.dirname(__file__))
 
 from django.shortcuts import render
-
+from time import sleep
 def index(request):
+    try:
+        if request.method == "POST":
+            name = request.POST["name"]
+            email = request.POST["email"]
+            phone = request.POST["phone"]  
+            message = request.POST["message"]
+            sleep(10)
+            data = Contact_info(name=name, email=email, phone=phone, message=message)
+            # No need to check data.is_valid() since it's not a form, just save it directly
+            data.save()
+    except Exception as e:
+        return render(request, 'grader/index.html', {'error': e})
+    else:
+        print("no data")
     return render(request, 'grader/index.html')
-
-def about(request):
-    return render(request, 'grader/about.html')
 
 def view_answers(request, content_id):
     content = get_object_or_404(Form_Question, id=content_id)
@@ -36,7 +45,7 @@ def view_answers(request, content_id):
     context = {'content': content}
     return render(request, 'grader/view_answer.html', context)
 
-from django.contrib.auth.decorators import login_required
+
 @login_required(login_url='login')
 def essay_prediction(request):
     questions_list = Question.objects.order_by('set')
@@ -86,17 +95,6 @@ def ask_essay(request):
         # Redirect to a success page or any other desired page
         return redirect("success/")  # Change 'success_page' to your desired URL name
     return render(request, 'grader/ask_essay.html')
-
-def success(request):
-    return render(request, 'grader/success.html')
-
-# Create your views here.
-# def index(request):
-#     questions_list = Question.objects.order_by('set')
-#     context = {
-#         'questions_list': questions_list,
-    # }
-    # return render(request, 'grader/index.html', context)
 
 def essay(request, question_id, essay_id):
     essay = get_object_or_404(Essay, pk=essay_id)
@@ -160,8 +158,6 @@ def signin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username)
-        print(password)
         # Server-side validation (example)
         if not username or not password:
             # Handle invalid form submission
@@ -230,3 +226,8 @@ def service(request):
 
 def contact(request):
     return render(request, 'grader/contact.html')
+
+def success(request):
+    return render(request, 'grader/success.html')
+def about(request):
+    return render(request, 'grader/about.html')

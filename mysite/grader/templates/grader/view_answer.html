@@ -3,81 +3,60 @@
 {% block title %}View Answer - Essay Forum{% endblock %}
 
 {% block content %}
-<div style="color: aliceblue;" class="container-fluid">
-    <div class="row py-4">
-        <div class="col-md-9">
-            <div class="response">
-                <h1 class="response__title">{{ content.title }}</h1>
-                <div class="post-group">
-                    <div class="post">
-                        <div class="d-flex align-items-center">
 
-                            <div>
-                                <img src="{{ user.profile.picture.url }}" alt="User Profile Picture" class="fa fa-user-circle fa-2x me-2">
-                                <h2 class="post__author">
-                                    {{ content.user.username }}
-                                </h2>
-                                <h3 class="post__timestamp">
-                                    Asked {{ content.time }}
-                                </h3>
-                            </div>
-                        </div>
-                        <p class="post__body">
-                            {{ content.description }}
+<div style="background-color:aliceblue;" class="row tm-row">
+    <div class="col-lg-4 tm-post-col">
+        <div class="tm-post-full">
+            <div class="mb-2">
+                <h2 class="pt-2 tm-color-primary tm-post-title">{{ content.title }}</h2>
+                <span>
+                <img src="{{ user.profile.picture.url }}" class="fa fa-user-circle fa-2x me-2">
+                <p class="tm-mb-40">{{ content.time }} posted by {{ content.user.username }}</p>
+            </span>
+                <p>{{ content.description }} </p>
+                <span class="d-block text-right tm-color-primary">{{ content.Comment.count }} Comment</span>
+            </div>
+
+            <!-- Comments -->
+            {% if content.Comment %}
+            <div>
+                <h2 class="tm-color-primary tm-post-title">Comments</h2>
+                <hr class="tm-hr-primary tm-mb-45">
+                {% for comment in content.Comment.all %}
+                <div class="tm-comment tm-mb-45">
+                    <figure class="tm-comment-figure">
+                        <img src="{{ user.profile.picture.url }}"  class="fa fa-user-circle fa-2x me-2">
+                        <figcaption class="tm-color-primary text-center">{{ comment.user.username }}</figcaption>
+                    </figure>
+                    <div>
+                        <p class="center">
+                            {{ comment.text }}
                         </p>
-                        <div class="post__actions">
-                            <div class="btn btn-primary">
-                                Like
-                            </div>
-                            <div class="btn btn-danger">
-                                Dislike
-                            </div>
-                            <button type="button" class="btn btn-warning">
-                                <i class="fa fa-comment-o"></i> 2
-                            </button>
+                        <div class="d-flex justify-content-between">
+                            <span class="tm-color-primary">{{ comment.date }}</span>
                         </div>
-                    </div>
-                    {% if content.Comment %}
-                    <div class="comments">
-                        {% for comment in content.Comment.all %}
-                        <div class="comment-group border rounded mb-3 d-flex flex-column align-items-center">
-                            <div>
-
-                                <h3 class="post__author">
-                                    <i class="fa fa-user-circle fa-2x me-2"></i>
-                                    {{ comment.user.username }}
-                                </h3>
-                                <h4 class="post__timestamp">
-                                    {{ comment.date }}
-                                </h4>
-                            </div>
-                            <p class="post__body text-center">
-                                {{ comment.text }}
-                            </p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    <p>No comments yet.</p>
-                    {% endif %}
-
-                    <div class="add-comment">
-                        <h5>Add a comment</h5>
-                        <form method="post" onsubmit="return validateForm();">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea class="form-control" name="comment-text" id="comment-text" rows="3"
-                                    placeholder="Write your comment"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Post Comment</button>
-                        </form>
                     </div>
                 </div>
+                <hr>
+                {% endfor %}
+                {% else %}
+                <p>No comments yet.</p>
+                {% endif %}
+                <br>
+                <br>
+                <form method="post" onsubmit="return validateForm();">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control" name="comment-text" id="comment-text" rows="3"
+                            placeholder="Write your comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
 
+</div>
 <script>
     function validateForm() {
         var commentText = document.getElementById('comment-text').value;

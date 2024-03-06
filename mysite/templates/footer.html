@@ -13,11 +13,11 @@
 
 	<!-- fonts style -->
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
+
 	<!-- font awesome style -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-  
+
 	<!-- Custom styles for this template -->
 	<link href="{% static 'css/style.css' %}" rel="stylesheet" />
 	<!-- responsive style -->
@@ -29,124 +29,125 @@
 <body>
 	<section class="info_section layout_padding2">
 		<div class="container">
-		  <div class="row">
-			<div class="col-md-3">
-			  <div class="info_contact">
-				<h4>
-				  Address
-				</h4>
-				<div class="contact_link_box">
-				  <a href="">
-					<i class="fa fa-map-marker" aria-hidden="true"></i>
-					<span>
-					  Location
-					</span>
-				  </a>
-				  <a href="">
-					<i class="fa fa-phone" aria-hidden="true"></i>
-					<span>
-					  Call +01 1234567890
-					</span>
-				  </a>
-				  <a href="">
-					<i class="fa fa-envelope" aria-hidden="true"></i>
-					<span>
-					  demo@gmail.com
-					</span>
-				  </a>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="info_contact">
+						<h4>
+							Address
+						</h4>
+						<div class="contact_link_box">
+							<a href="">
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+								<span>
+									Kathmandu,Nepal
+								</span>
+							</a>
+							<a href="">
+								<i class="fa fa-phone" aria-hidden="true"></i>
+								<span>
+									Call +01 1234567890
+								</span>
+							</a>
+							<a href="">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+								<span>
+									essaymetrics@gmail.com
+								</span>
+							</a>
+						</div>
+					</div>
+					<div class="info_social">
+						<a href="">
+							<i class="fa fa-facebook" aria-hidden="true"></i>
+						</a>
+						<a href="">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</a>
+						<a href="">
+							<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</a>
+						<a href="">
+							<i class="fa fa-instagram" aria-hidden="true"></i>
+						</a>
+					</div>
 				</div>
-			  </div>
-			  <div class="info_social">
-				<a href="">
-				  <i class="fa fa-facebook" aria-hidden="true"></i>
-				</a>
-				<a href="">
-				  <i class="fa fa-twitter" aria-hidden="true"></i>
-				</a>
-				<a href="">
-				  <i class="fa fa-linkedin" aria-hidden="true"></i>
-				</a>
-				<a href="">
-				  <i class="fa fa-instagram" aria-hidden="true"></i>
-				</a>
-			  </div>
-			</div>
-			<div class="col-md-3">
-			  <div class="info_link_box">
-				<h4>
-				  Links
-				</h4>
-				<div class="info_links">
-				  <a class="active" href="{% url 'index' %}">
-					<img src="images/nav-bullet.png" alt="">
-					Home
-				  </a>
-				  <a class="" href="{% url 'about' %}">
-					<img src="images/nav-bullet.png" alt="">
-					About
-				  </a>
-				  <a class="" href="{% url 'service' %}">
-					<img src="images/nav-bullet.png" alt="">
-					Services
-				  </a>
-				  
-				  </a>
-				  <a class="" href="{% url 'contact' %}">
-					<img src="images/nav-bullet.png" alt="">
-					Contact Us
-				  </a>
-				  <a class="" href="{% url 'essay_writing_forum' %}">
-					<img src="images/nav-bullet.png" alt="">
-					Forum
-				  </a>
+				<div class="col-md-3">
+					<div class="info_link_box">
+						<h4>
+							Links
+						</h4>
+						<div class="info_links">
+							<a class="active" href="{% url 'index' %}">
+								<img src="images/nav-bullet.png" alt="">
+								Home
+							</a>
+							<a class="" href="{% url 'about' %}">
+								<img src="images/nav-bullet.png" alt="">
+								About
+							</a>
+							<a class="" href="{% url 'service' %}">
+								<img src="images/nav-bullet.png" alt="">
+								Services
+							</a>
+
+							</a>
+							<a class="" href="{% url 'contact' %}">
+								<img src="images/nav-bullet.png" alt="">
+								Contact Us
+							</a>
+							<a class="" href="{% url 'essay_writing_forum' %}">
+								<img src="images/nav-bullet.png" alt="">
+								Forum
+							</a>
+						</div>
+					</div>
 				</div>
-			  </div>
+				<div class="col-md-3">
+					<div class="info_detail">
+						<h4>
+							Info
+						</h4>
+						<p>
+							We provide an innovative essay scoring tool to get instant feedback on your writing, along
+							with a community forum for essay help and discussions.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 mb-0">
+					<h4>
+						Subscribe
+					</h4>
+					<form action="#">
+						<input type="text" placeholder="Enter email" />
+						<button type="submit">
+							Subscribe
+						</button>
+					</form>
+				</div>
 			</div>
-			<div class="col-md-3">
-			  <div class="info_detail">
-				<h4>
-				  Info
-				</h4>
-				<p>
-				  necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
-				</p>
-			  </div>
-			</div>
-			<div class="col-md-3 mb-0">
-			  <h4>
-				Subscribe
-			  </h4>
-			  <form action="#">
-				<input type="text" placeholder="Enter email" />
-				<button type="submit">
-				  Subscribe
-				</button>
-			  </form>
-			</div>
-		  </div>
 		</div>
-	  </section>
-	
-	  <!-- end info section -->
-	
-	
-	  <!-- footer section -->
-	  <footer class="footer_section">
+	</section>
+
+	<!-- end info section -->
+
+
+	<!-- footer section -->
+	<footer class="footer_section">
 		<div class="container">
-		  <p>
-			&copy; <span id="displayYear"></span> All Rights Reserved By
-			<a href="https://html.design/">Free Html Templates</a>
-		  </p>
+			<p>
+				&copy; <span id="displayYear"></span> All Rights Reserved By
+				<a href="https://html.design/">EssayMetrics</a>
+			</p>
 		</div>
-	  </footer>
-	  <!-- footer section -->
-	
-	  <!-- jQery -->
-	  <script src="js/jquery-3.4.1.min.js"></script>
-	  <!-- bootstrap js -->
-	  <script src="js/bootstrap.js"></script>
-	  <!-- custom js -->
-	  <script src="js/custom.js"></script>
+	</footer>
+	<!-- footer section -->
+
+	<!-- jQery -->
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="js/bootstrap.js"></script>
+	<!-- custom js -->
+	<script src="js/custom.js"></script>
 
 </body>
 

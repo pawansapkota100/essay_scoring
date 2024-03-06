@@ -34,6 +34,7 @@ class Form_Question(models.Model):
     votes = models.IntegerField(default=0)
     Comment= models.ManyToManyField(Comment, null=True, blank=True, related_name='comments')
 
+    
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
@@ -46,3 +47,12 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+class Contact_info(models.Model):
+    name=models.CharField(max_length=100)
+    email=models.EmailField()
+    phone=models.CharField(max_length=10)
+    message=models.TextField()
+    def __str__(self):
+        return self.name
+    
