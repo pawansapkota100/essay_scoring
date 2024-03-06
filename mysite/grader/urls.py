@@ -21,4 +21,5 @@ urlpatterns = [
     path('service/', views.service, name='service'),
     path('contact/', views.contact, name='contact'),
 
+
 ]

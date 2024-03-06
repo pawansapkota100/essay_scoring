@@ -4,32 +4,43 @@
 
 {% block content %}
 <section class="about_section layout_padding">
-    <div class="container  ">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2 style="color: beige;">
-                About Us
-              </h2>
-            </div>
-            <p>
-              Welcome to EssayMetrics! We are a community of students, educators, and essay enthusiasts who are passionate about writing improvement. 
-              Our goal is to provide tools and resources to help you get your best possible essay scores.
-
-            </p>
-            <a href="">
-              Read More
-            </a>
+  <div class="container  ">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2 style="color: beige;">
+              About Us
+            </h2>
           </div>
-        </div>
-        <div class="col-md-6 ">
-          <div class="img-box">
-            <img src="{% static 'images/about-img.png' %}" alt="">
-          </div>
-        </div>
+          <p style="color: beige;">
+            Welcome to EssayMetrics! We are a community of students, educators, and essay enthusiasts who are passionate
+            about writing improvement.
+            Our goal is to provide tools and resources to help you get your best possible essay scores.
+            <br><br>On our website, you can use our innovative essay scoring tool to get an instant predicted score for
+            your essay based on key writing criteria. Our algorithm analyzes elements like thesis clarity, organization,
+            evidence usage, and more to predict how an essay would fare on a standardized writing test. You can use this
+            to refine and strengthen your writing before turning it in.
 
+            <br><br>We also host a lively essay discussion forum where members can get feedback on essay drafts, ask
+            questions about writing techniques, discuss current essay prompts or topics, and connect with other writers.
+
+            In addition to our scoring tool and discussion forum, EssayMetrics provides writing tips.
+
+          </p>
+          <a href="">
+            Read More
+          </a>
+        </div>
       </div>
+      <div class="col-md-6 ">
+        <div class="img-box">
+          <img src="{% static 'images/writing.svg' %}" alt="">
+
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}

@@ -11,25 +11,27 @@
       <div class="row">
         <div class="col-md-8 col-lg-6 mx-auto">
           <div class="form_container">
-            <form action="">
+            <form action="{% url 'index' %}" method="post" onsubmit="submitForm()">
+              {% csrf_token %}
               <div>
-                <input type="text" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="email" placeholder="Your Email" />
+                  <input required type="text" name="name" placeholder="Your Name" style="color:beige;" />
               </div>
               <div>
-                <input type="text" placeholder="Your Phone" />
+                  <input required type="email" name="email" placeholder="Your Email" style="color: white;" />
               </div>
               <div>
-                <input type="text" class="message-box" placeholder="Message" />
+                  <input required type="text" name="phone" placeholder="Your Phone" style="color: white;" />
               </div>
-              <div class="btn_box ">
-                <button>
-                  SEND
-                </button>
+              <div>
+                  <input required type="text" name="message" class="message-box" placeholder="Message"
+                      style="color: white;" />
               </div>
-            </form>
+              <div class="btn_box">
+                  <button style="color: white;">
+                      SEND
+                  </button>
+              </div>
+          </form>
           </div>
         </div>
       </div>
