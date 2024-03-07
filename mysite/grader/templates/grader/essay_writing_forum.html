@@ -28,9 +28,13 @@
             {% for essay in essay_data %}
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 style="text-transform: capitalize;" class="card-title"><a href="{% url 'view_answer' essay.id %}">{{ essay.title }}</a></h5>
+                    <div style= "background-color: rgba(231, 231, 231, 0.719); padding: 1em;">
+                        <h5 style="text-transform: capitalize;" class="card-title">
+                            <a href="{% url 'view_answer' essay.id %}">{{ essay.title }}</a></h5>
+                    </div>
                     <div class="user-info mb-2">
-                        <span style="text-transform: capitalize; font-weight: bold" class="fw-bold">{{ essay.user.username }}</span> <!-- Assuming user is a ForeignKey in Form_Question -->
+                        <span style="text-transform: capitalize; font-weight: bold" class="fw-bold">
+                            {{essay.user.username }}</span> 
                         <span class="text-muted">asked {{ essay.time }}</span>
                     </div>
                     <p class="card-text">{{ essay.description }}</p>

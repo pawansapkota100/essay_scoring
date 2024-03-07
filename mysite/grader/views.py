@@ -42,7 +42,8 @@ def view_answers(request, content_id):
         # Add the newly created comment to the context
         content.Comment.add(new_comment)
         content.save()
-    context = {'content': content}
+    forum_question= Form_Question.objects.all()     
+    context = {'content': content, 'forum_question': forum_question}
     return render(request, 'grader/view_answer.html', context)
 
 
@@ -68,7 +69,7 @@ def ask_essay(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         expectation = request.POST.get('tried')
-        tags_input = request.POST.get('tags')
+
 
         # Validate form data
         if not title or not description:
@@ -81,16 +82,12 @@ def ask_essay(request):
             title=title,
             description=description,
             expectation=expectation,
+
             user=request.user if request.user.is_authenticated else None,
             time=timezone.now()
         )
 
-        # Process tags
-        if tags_input:
-            tags = [tag.strip() for tag in tags_input.split(',')]
-            for tag_name in tags:
-                tag, _ = Tag.objects.get_or_create(name=tag_name)
-                new_essay.tags.add(tag)
+
 
         # Redirect to a success page or any other desired page
         return redirect("success/")  # Change 'success_page' to your desired URL name
