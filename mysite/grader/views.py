@@ -228,3 +228,6 @@ def success(request):
     return render(request, 'grader/success.html')
 def about(request):
     return render(request, 'grader/about.html')
+
+def update_profile(request):
+   return render(request, 'grader/profile_update.html')
