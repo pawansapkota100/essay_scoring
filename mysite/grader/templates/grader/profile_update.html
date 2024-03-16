@@ -10,7 +10,7 @@
                         <h2 class="text-center">Update Profile</h2>
                     </div>
                     <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" action="{% url 'profile_update' %}" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="id_bio">Bio:</label>

@@ -229,5 +229,14 @@ def success(request):
 def about(request):
     return render(request, 'grader/about.html')
 
+
+
+from .forms import ProfileUpdateForm
 def update_profile(request):
-   return render(request, 'grader/profile_update.html')
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            print("##############")
+            form.save()
+            return redirect('profile')
+    return render(request, 'grader/profile_update.html')

@@ -8,3 +8,8 @@ class AnswerForm(forms.ModelForm):
         model = Essay
         fields = ['answer']
 
+from grader.models import Profile
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'picture', 'location', 'date_of_birth', 'website', 'phone_number']
