@@ -38,7 +38,7 @@ class Form_Question(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
-    picture = models.ImageField(upload_to='images/', null=True)
+    picture = models.ImageField(upload_to='images/', null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     website = models.URLField(null=True, blank=True)

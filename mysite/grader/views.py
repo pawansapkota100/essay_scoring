@@ -47,7 +47,7 @@ def view_answers(request, content_id):
     return render(request, 'grader/view_answer.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='login',redirect_field_name="essay_prediction" )
 def essay_prediction(request):
     questions_list = Question.objects.order_by('set')
     context = {
@@ -173,6 +173,8 @@ def signin(request):
 
 
 
+from django.contrib import messages
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -182,12 +184,8 @@ def register(request):
         
         if password1 == password2:
             # Check if the username or email already exists
-            try:
-                if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
-                    return render(request, 'register.html', {'error': 'Username or email already exists.'})
-            except:
-                pass
-            
+            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                messages.error(request, 'Username or email already exists.')
             else:
                 # Create the user
                 user = User.objects.create_user(username=username, email=email, password=password1)
@@ -198,11 +196,10 @@ def register(request):
                 return redirect('index')
         else:
             # Handle case when passwords don't match
-           print('passwords dont match')
-    else:
-        pass
-    
+            messages.error(request, 'Passwords don\'t match')
+
     return render(request, 'grader/register.html')
+
 
 
 
@@ -236,7 +233,10 @@ def update_profile(request):
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
-            print("##############")
             form.save()
             return redirect('profile')
-    return render(request, 'grader/profile_update.html')
+        else:
+            print(form.errors)  # Print out form errors for debugging
+    else:  
+        form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'grader/profile_update.html', {'form': form})

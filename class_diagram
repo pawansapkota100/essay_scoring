@@ -1,0 +1,130 @@
+digraph {
+	subgraph cluster_django_contrib_admin {
+		color=olivedrab4 label="django.contrib.admin" style=rounded
+		django_contrib_admin_models_LogEntry [label="LogEntry
+id: AutoField
+content_type: ForeignKey (id)
+user: ForeignKey (id)
+action_flag: PositiveSmallIntegerField
+action_time: DateTimeField
+change_message: TextField
+object_id: TextField
+object_repr: CharField"]
+	}
+	subgraph cluster_django_contrib_auth {
+		color=olivedrab4 label="django.contrib.auth" style=rounded
+		django_contrib_auth_models_AbstractUser [label="AbstractUser
+<AbstractBaseUser,PermissionsMixin>
+date_joined: DateTimeField
+email: EmailField
+first_name: CharField
+is_active: BooleanField
+is_staff: BooleanField
+is_superuser: BooleanField
+last_login: DateTimeField
+last_name: CharField
+password: CharField
+username: CharField"]
+		django_contrib_auth_models_Permission [label="Permission
+id: AutoField
+content_type: ForeignKey (id)
+codename: CharField
+name: CharField"]
+		django_contrib_auth_models_Group [label="Group
+id: AutoField
+name: CharField"]
+		django_contrib_auth_models_User [label="User
+<AbstractUser>
+id: AutoField
+date_joined: DateTimeField
+email: EmailField
+first_name: CharField
+is_active: BooleanField
+is_staff: BooleanField
+is_superuser: BooleanField
+last_login: DateTimeField
+last_name: CharField
+password: CharField
+username: CharField"]
+	}
+	subgraph cluster_django_contrib_contenttypes {
+		color=olivedrab4 label="django.contrib.contenttypes" style=rounded
+		django_contrib_contenttypes_models_ContentType [label="ContentType
+id: AutoField
+app_label: CharField
+model: CharField"]
+	}
+	subgraph cluster_django_contrib_sessions {
+		color=olivedrab4 label="django.contrib.sessions" style=rounded
+		django_contrib_sessions_base_session_AbstractBaseSession [label="AbstractBaseSession
+expire_date: DateTimeField
+session_data: TextField"]
+		django_contrib_sessions_models_Session [label="Session
+<AbstractBaseSession>
+session_key: CharField
+expire_date: DateTimeField
+session_data: TextField"]
+	}
+	subgraph cluster_grader {
+		color=olivedrab4 label=grader style=rounded
+		grader_models_Question [label="Question
+id: AutoField
+max_score: IntegerField
+min_score: IntegerField
+question_title: TextField
+set: IntegerField"]
+		grader_models_Essay [label="Essay
+id: AutoField
+question: ForeignKey (id)
+content: TextField
+score: IntegerField"]
+		grader_models_Comment [label="Comment
+id: AutoField
+user: ForeignKey (id)
+date: DateTimeField
+text: TextField"]
+		grader_models_Tag [label="Tag
+id: AutoField
+name: CharField"]
+		grader_models_Form_Question [label="Form_Question
+id: AutoField
+tags: ForeignKey (id)
+user: ForeignKey (id)
+description: TextField
+expectation: CharField
+time: DateTimeField
+title: CharField
+votes: IntegerField"]
+		grader_models_Profile [label="Profile
+id: AutoField
+user: OneToOneField (id)
+bio: TextField
+date_of_birth: DateField
+location: CharField
+phone_number: CharField
+picture: ImageField
+website: URLField"]
+		grader_models_Contact_info [label="Contact_info
+id: AutoField
+email: EmailField
+message: TextField
+name: CharField
+phone: CharField"]
+	}
+	django_contrib_admin_models_LogEntry -> django_contrib_auth_models_User [label="user (logentry)" arrowhead=none arrowtail=dot dir=both]
+	django_contrib_admin_models_LogEntry -> django_contrib_contenttypes_models_ContentType [label="content_type (logentry)" arrowhead=none arrowtail=dot dir=both]
+	django_contrib_auth_models_AbstractUser -> django_contrib_auth_base_user_AbstractBaseUser [label="abstract inheritance" arrowhead=empty arrowtail=none dir=both]
+	django_contrib_auth_models_AbstractUser -> django_contrib_auth_models_PermissionsMixin [label="abstract inheritance" arrowhead=empty arrowtail=none dir=both]
+	django_contrib_auth_models_Permission -> django_contrib_contenttypes_models_ContentType [label="content_type (permission)" arrowhead=none arrowtail=dot dir=both]
+	django_contrib_auth_models_Group -> django_contrib_auth_models_Permission [label="permissions (group)" arrowhead=dot arrowtail=dot dir=both]
+	django_contrib_auth_models_User -> django_contrib_auth_models_Group [label="groups (user)" arrowhead=dot arrowtail=dot dir=both]
+	django_contrib_auth_models_User -> django_contrib_auth_models_Permission [label="user_permissions (user)" arrowhead=dot arrowtail=dot dir=both]
+	django_contrib_auth_models_User -> django_contrib_auth_models_AbstractUser [label="abstract inheritance" arrowhead=empty arrowtail=none dir=both]
+	django_contrib_sessions_models_Session -> django_contrib_sessions_base_session_AbstractBaseSession [label="abstract inheritance" arrowhead=empty arrowtail=none dir=both]
+	grader_models_Essay -> grader_models_Question [label="question (essay)" arrowhead=none arrowtail=dot dir=both]
+	grader_models_Comment -> django_contrib_auth_models_User [label="user (comment)" arrowhead=none arrowtail=dot dir=both]
+	grader_models_Form_Question -> django_contrib_auth_models_User [label="user (form_question)" arrowhead=none arrowtail=dot dir=both]
+	grader_models_Form_Question -> grader_models_Tag [label="tags (form_question)" arrowhead=none arrowtail=dot dir=both]
+	grader_models_Form_Question -> grader_models_Comment [label="Comment (comments)" arrowhead=dot arrowtail=dot dir=both]
+	grader_models_Profile -> django_contrib_auth_models_User [label="user (profile)" arrowhead=none arrowtail=none dir=both]
+}

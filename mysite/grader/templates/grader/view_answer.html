@@ -250,10 +250,15 @@
                         <div class="mb-2">
                             <h2 class="pt-2 tm-color-primary tm-post-title">{{ content.title }}</h2>
                             <span>
-                                <img src="{{ user.profile.picture.url }}" class="fa fa-user-circle fa-2x me-2">
-                                <p class="tm-mb-40">{{ content.time }} posted by {{ content.user.username }}</p>
-                            </span>
+                                <img src="{{ content.user.profile.picture.url }}" class="fa fa-user-circle fa-2x me-2 rounded-circle" style="max-width: 40px;">
+                                <b class="tm-mb-40">{{ content.time }} posted by {{ content.user.username }}</b>
+                                <br>
+                                <br>
+                            </span><h6>Description</h6>
                             <p>{{ content.description }} </p>
+                            <div><h6>Expectation</h6>
+                                <p>{{ content.expectation }}</p>
+                            </div>
                             <span class="d-block text-right tm-color-primary">{{ content.Comment.count }} Comment</span>
                         </div>
 
@@ -265,12 +270,12 @@
                             {% for comment in content.Comment.all %}
                             <div class="tm-comment tm-mb-45" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 20px; background-color: #fff;">
                                 <figure class="tm-comment-figure">
-                                    <img src="{{ user.profile.picture.url }}" class="fa fa-user-circle fa-2x me-2">
+                                    <img src="{{comment.user.profile.picture.url }}" class="fa fa-user-circle fa-2x me-2 rounded-circle" style="max-width: 40px;">
                                     <figcaption class="tm-color-primary text-center">{{ comment.user.username }}</figcaption>
                                 </figure>
                                 <div>
                                     <b>
-                                        <h4 class="center">{{ comment.text }}</h4>
+                                        <p class="center">{{ comment.text }}<p>
                                     </b>
                                     <div>
                                         <br>

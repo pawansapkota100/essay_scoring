@@ -26,10 +26,10 @@ Home
                                         writing, along with a community forum for essay help and discussions.
                                     </p>
                                     <div class="btn-box">
-                                        <a href="" class="btn-1">
+                                        <a href="{% url 'about' %}" class="btn-1">
                                             About Us
                                         </a>
-                                        <a href="" class="btn-2">
+                                        <a href="{% url 'contact' %}" class="btn-2">
                                             Contact Us
                                         </a>
                                     </div>
@@ -63,10 +63,10 @@ Home
                                         ask questions about writing techniques, discuss current essay prompts or topics,
                                         and connect with other writers. </p>
                                     <div class="btn-box">
-                                        <a href="" class="btn-1">
+                                        <a href="{% url 'essay_writing_forum' %}" class="btn-1">
                                             Forums
                                         </a>
-                                        <a href="" class="btn-2">
+                                        <a href="{% url 'contact' %}" class="btn-2">
                                             Contact Us
                                         </a>
                                     </div>
@@ -124,7 +124,7 @@ Home
                         <p>
                             Evaluate your score through Score Predictor.
                         </p>
-                        <a href="">
+                        <a href="{% url 'essay_prediction' %}">
                             Read More
                             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 
@@ -144,7 +144,7 @@ Home
                         <p>
                             Discuss the Essay related queries with the people around the World.
                         </p>
-                        <a href="">
+                        <a href="{% url 'essay_writing_forum' %}">
                             Read More
                             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 
@@ -164,7 +164,7 @@ Home
                         <p>
                             Consider EssayMetrics for the writing tips and tricks.
                         </p>
-                        <a href="">
+                        <a href="{% url 'essay_writing_forum' %}">
                             Read More
                             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 
@@ -193,7 +193,7 @@ Home
                         Welcome to EssayMetrics! We are a community of students, educators, and essay enthusiasts who
                         are passionate about writing improvement.
                         Our goal is to provide tools and resources to help you get your best possible essay scores.</p>
-                    <a href="">
+                    <a href="{% url 'about' %}">
                         Read More
                     </a>
                 </div>
@@ -237,9 +237,7 @@ Home
                             of grammar. (Provided score is not 100% accurate)
                         </p>
                     </div>
-                    <a href="">
-                        Read More
-                    </a>
+                    
                 </div>
             </div>
         </div>
