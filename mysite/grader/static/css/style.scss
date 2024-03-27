@@ -15,7 +15,7 @@ $textCol: #999;
   color: $col2;
   border-radius: $bRadius;
   border: 1px solid $col1;
-  transition: all .3s;
+  transition: all .1s;
 
   &:hover {
     background-color: transparent;
@@ -218,7 +218,7 @@ a:focus {
       background-color: $white;
       top: -10px;
       border-radius: 5px;
-      transition: all 0.3s;
+      transition: all 0.1s;
     }
 
     &::after {
@@ -361,7 +361,7 @@ a:focus {
       background-color: $primary1;
       opacity: 1;
       font-size: 28px;
-      transition: all .3s;
+      transition: all .01s;
 
       &:hover {
         background-color: $white;
@@ -424,7 +424,7 @@ a:focus {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all .2s;
+      transition: all .1s;
       padding: 10px;
 
       img {

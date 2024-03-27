@@ -3,57 +3,67 @@
 {% block title %}Essay Prediction - My Website{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="sticky-top" style="top: 20px;">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Instructions</h5>
-                            <p class="card-text">Here you can find information about the scoring system and other relevant details.</p>
-                            <hr>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra urna eu quam sagittis, id ultrices leo tempus. Sed nec fringilla libero.</p>
-                            <p class="card-text">Scoring System:</p>
-                            <ul>
-                                <li>Minimum Score: Represents the minimum achievable score for a question.</li>
-                                <li>Maximum Score: Represents the maximum achievable score for a question.</li>
-                            </ul>
-                        </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sticky-top" style="top: 20px;">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Instructions</h5>
+                        <!-- <p class="card-text">Here you can find information about the scoring system and other relevant details.</p> -->
+                        <hr>
+                        <p class="card-text">
+                            <ol>
+                            <li>Select the specific essay prompt from the options.</li>  
+                            <li>Copy and paste or type in the full text of the new essay to be scored.</li> 
+                            <li>Click the "Get Score" button to send the essay to the EssayMetrics model.</li> 
+                            <li>The model will pre-process the text and predict a score in the same rubric scale as the selected prompt.</li> 
+                            <li>The predicted score will be displayed.</li> 
+                            </ol>
+                        </p>
+                        <p style="font-weight: bold;" class="card-text">Scoring System:</p>
+                        <ul>
+                            <li>Minimum Score: Represents the minimum achievable score for a question.</li>
+                            <li>Maximum Score: Represents the maximum achievable score for a question.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+        </div>
+        <div class="col-md-9">
+            <div style="color: aliceblue;">
                 <h1>Essay Score Prediction</h1>
-                <p>This is the essay score prediction page.</p>
-
-                {% if questions_list %}
-                    <div class="row">
-                        {% for question in questions_list %}
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100 shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ question.question_title|truncatewords:10 }}</h5>
-                                        <p class="card-text">{{ question.description }}</p>
-                                        <p class="card-text">Min Score: {{ question.min_score }} - Max Score: {{ question.max_score }}</p>
-                                    </div>
-                                    <div class="card-footer bg-transparent border-top-0">
-                                        <a href="/{{ question.set }}" class="btn btn-primary stretched-link">Start Writing</a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <p>No polls are available.</p>
-                {% endif %}
+                <p>Essay prompts.</p>
             </div>
+            {% if questions_list %}
+            <div class="row">
+                {% for question in questions_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.question_title|truncatewords:20 }}</h5>
+                            <p class="card-text">{{ question.description }}</p>
+                            <p class="card-text">Min Score: {{ question.min_score }}</p>
+                            <p> Max Score: {{ question.max_score}} </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a href="/{{ question.set }}" class="btn btn-primary stretched-link">Start Writing</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No polls are available.</p>
+            {% endif %}
         </div>
     </div>
-    <style>
-        .card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+</div>
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
 {% endblock %}
