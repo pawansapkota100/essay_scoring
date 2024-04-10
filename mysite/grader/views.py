@@ -42,11 +42,12 @@ def view_answers(request, content_id):
         # Add the newly created comment to the context
         content.Comment.add(new_comment)
         content.save()
-    context = {'content': content}
+    forum_question= Form_Question.objects.all()     
+    context = {'content': content, 'forum_question': forum_question}
     return render(request, 'grader/view_answer.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='login',redirect_field_name="essay_prediction" )
 def essay_prediction(request):
     questions_list = Question.objects.order_by('set')
     context = {
@@ -68,7 +69,7 @@ def ask_essay(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         expectation = request.POST.get('tried')
-        tags_input = request.POST.get('tags')
+
 
         # Validate form data
         if not title or not description:
@@ -81,16 +82,12 @@ def ask_essay(request):
             title=title,
             description=description,
             expectation=expectation,
+
             user=request.user if request.user.is_authenticated else None,
             time=timezone.now()
         )
 
-        # Process tags
-        if tags_input:
-            tags = [tag.strip() for tag in tags_input.split(',')]
-            for tag_name in tags:
-                tag, _ = Tag.objects.get_or_create(name=tag_name)
-                new_essay.tags.add(tag)
+
 
         # Redirect to a success page or any other desired page
         return redirect("success/")  # Change 'success_page' to your desired URL name
@@ -176,6 +173,8 @@ def signin(request):
 
 
 
+from django.contrib import messages
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -185,12 +184,8 @@ def register(request):
         
         if password1 == password2:
             # Check if the username or email already exists
-            try:
-                if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
-                    return render(request, 'register.html', {'error': 'Username or email already exists.'})
-            except:
-                pass
-            
+            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                messages.error(request, 'Username or email already exists.')
             else:
                 # Create the user
                 user = User.objects.create_user(username=username, email=email, password=password1)
@@ -201,11 +196,10 @@ def register(request):
                 return redirect('index')
         else:
             # Handle case when passwords don't match
-           print('passwords dont match')
-    else:
-        pass
-    
+            messages.error(request, 'Passwords don\'t match')
+
     return render(request, 'grader/register.html')
+
 
 
 
@@ -231,3 +225,18 @@ def success(request):
     return render(request, 'grader/success.html')
 def about(request):
     return render(request, 'grader/about.html')
+
+
+
+from .forms import ProfileUpdateForm
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            print(form.errors)  # Print out form errors for debugging
+    else:  
+        form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'grader/profile_update.html', {'form': form})

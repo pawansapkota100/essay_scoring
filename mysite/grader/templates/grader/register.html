@@ -1,42 +1,47 @@
-
 {% extends "base.html" %}
 
 {% block title %}Register{% endblock %}
 {% block content %}
 
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6" style="color: beige;">
-        <h2 class="text-center mb-4">Register</h2>
-        <form id="registerForm" action="{% url 'register' %}" method="post">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="registerName">Name</label>
-            <input type="text" class="form-control" id="registerName" name="username" placeholder="Enter name">
-          </div>
-          <div class="form-group">
-            <label for="registerEmail">Email address</label>
-            <input type="email" class="form-control" id="registerEmail" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
-          <div class="form-group">
-            <label for="registerPassword">Password</label>
-            <input type="password" class="form-control" id="registerPassword" name="password1" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" name="password2" placeholder="Confirm Password">
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Register</button>
-        </form>
-        <a href="{% url 'login' %}" class="btn btn-link btn-block mt-2">Already have an account? Login</a>
-      </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6" style="color: beige;">
+      <h2 class="text-center mb-4">Register</h2>
+      
+      <!-- Display error messages if they exist -->
+      {% if messages %}
+        <div class="alert alert-danger">
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      
+      <form id="registerForm" action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="registerName">Username</label>
+          <input type="text" class="form-control" id="registerName" name="username" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email address</label>
+          <input type="email" class="form-control" id="registerEmail" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <input type="password" class="form-control" id="registerPassword" name="password1" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" name="password2" placeholder="Confirm Password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </form>
+      <a href="{% url 'login' %}" class="btn btn-link btn-block mt-2">Already have an account? Login</a>
     </div>
   </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-</body>
 {% endblock %}

@@ -9,12 +9,12 @@
             <h1 class="display-4">Grade: {{ essay.score }}</h1>
             <p class="lead">Congratulations! The maximum possible score for this essay is {{ essay.question.max_score }}</p>
             <hr class="my-4">
-            <p>Your essay has been graded using advanced neural networks.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+            <p>Your essay has been graded using Machine learning models.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'about' %}" role="button">Learn More</a>
         </div>
     </div>
 
-    <div class="container">
+    <div style="color: aliceblue;" class="container">
         <h2 class="display-4">Your Submission</h2>
         <p class="text-justify">{{ essay.content }}</p>
     </div>
